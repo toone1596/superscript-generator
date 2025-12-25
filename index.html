@@ -31,7 +31,7 @@
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #0f172a;
-            --text-muted: #64748b;
+            --text-muted: #475569; /* Slightly darker for better readability */
             --border: #e2e8f0;
             --input-bg: #f8fafc;
             --success: #10b981;
@@ -67,6 +67,7 @@
             align-items: center;
             min-height: 100vh;
             transition: background-color 0.3s, color 0.3s;
+            line-height: 1.6;
         }
 
         .navbar {
@@ -89,7 +90,6 @@
             color: var(--text-main);
         }
 
-        /* Dark Mode Toggle Button */
         .theme-toggle-btn {
             background: transparent;
             border: none;
@@ -113,10 +113,10 @@
 
         .main-container {
             width: 100%;
-            max-width: 700px;
+            max-width: 800px; /* Increased width slightly for better reading */
             padding: 40px 20px;
             box-sizing: border-box;
-            flex: 1; /* Makes main container take available space */
+            flex: 1;
         }
 
         .mode-switch {
@@ -241,41 +241,57 @@
             animation: pop 0.3s ease;
         }
 
+        /* Enhanced Content Section Styles */
         .content-section {
-            margin-top: 50px;
+            margin-top: 60px;
             color: var(--text-main);
-            line-height: 1.8;
+            font-size: 16px;
         }
 
         .content-section h2 {
-            font-size: 20px;
-            margin-top: 30px;
+            font-size: 24px;
+            margin-top: 40px;
+            margin-bottom: 20px;
             color: var(--text-main);
+            font-weight: 800;
         }
 
         .content-section h3 {
-            font-size: 16px;
+            font-size: 18px;
             color: var(--text-main);
-            margin-top: 20px;
+            margin-top: 25px;
+            font-weight: 700;
         }
 
-        .content-section p, .content-section ul {
-            font-size: 15px;
+        .content-section p {
+            margin-bottom: 20px;
             color: var(--text-muted);
+        }
+
+        .content-section ul {
+            margin-bottom: 25px;
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+        
+        .content-section li {
+            margin-bottom: 10px;
         }
 
         .faq-box {
             background: var(--card-bg);
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 25px;
             border: 1px solid var(--border);
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             transition: background 0.3s, border-color 0.3s;
         }
+        .faq-box h3 {
+            margin-top: 0;
+        }
 
-        /* New Feedback Section Style */
         .feedback-section {
-            margin-top: 40px;
+            margin-top: 50px;
             background: var(--feedback-bg);
             color: var(--feedback-text);
             padding: 20px;
@@ -298,14 +314,15 @@
         }
 
         .footer {
-            margin-top: 40px;
-            padding: 20px;
+            margin-top: 50px;
+            padding: 30px 20px;
             text-align: center;
-            font-size: 13px;
+            font-size: 14px;
             color: var(--secondary);
             border-top: 1px solid var(--border);
             width: 100%;
             transition: border-color 0.3s;
+            background: var(--card-bg);
         }
 
         @media (max-width: 600px) {
@@ -352,25 +369,49 @@
         </div>
 
         <div class="content-section">
-            <h2>About this Superscript Generator</h2>
-            <p>Welcome to the most complete Superscript and Subscript generator on the web. We have optimized our Unicode map to provide the best possible coverage for your tiny text needs, including support for math symbols and chemical formulas.</p>
+            <h2>The Ultimate Online Superscript and Subscript Generator</h2>
+            <p>Welcome to SuperscriptGenerator.co, the most reliable tool for converting normal text into tiny, stylish characters. Whether you need a <strong>superscript generator</strong> for academic equations or a <strong>subscript maker</strong> for chemical formulas, our tool provides an instant, copy-paste solution that works almost everywhere on the web.</p>
+            <p>Unlike word processors that use rich text formatting, our tool works differently. It acts as a specialized <strong>unicode superscript generator</strong>. This means it replaces your standard letters and numbers with specific symbols from the vast Unicode standard that are designed to appear smaller and raised (or lowered). Because these are actual characters, not just formatted text, you can use this <strong>superscript text generator</strong> to copy and paste results directly into social media bios, chat apps, and websites where normal formatting isn't allowed.</p>
 
-            <div class="faq-box">
-                <h3>❓ Why are some letters weird?</h3>
-                <p>You might notice some characters look slightly different. This is because "tiny text" isn't a font, but a collection of special Unicode symbols taken from different language sets to mimic the effect.</p>
-            </div>
-
-            <div class="faq-box">
-                <h3>🔢 How do I use Subscript?</h3>
-                <p>Simply click the <strong>"Subscript (x₂)"</strong> tab at the top. This is perfect for chemical formulas (like H₂O) or mathematical notations.</p>
-            </div>
-
-            <h2>Common Uses on Social Media</h2>
+            <h2>Understanding the Difference: Superscript vs. Subscript</h2>
+            <p>It's easy to mix them up, but knowing the difference is key for using our <strong>subscript and superscript generator</strong> effectively:</p>
             <ul>
-                <li><strong>X (Twitter) Bio:</strong> Make your profile unique (e.g., ᴾʳᵒᶠᵉˢˢᶦᵒⁿᵃˡ).</li>
-                <li><strong>Discord & Reddit:</strong> Use it for aesthetic formatting or footnotes.</li>
-                <li><strong>Academic:</strong> Easily type exponents (x² + y²) or chemical compounds.</li>
+                <li><strong>Superscript (x²):</strong> These are characters positioned <em>above</em> the normal text line. They are commonly used for mathematical exponents (like e=mc²), ordinal indicators (like 1ˢᵗ, 2ⁿᵈ), and footnotes in documents. Our tool excels as an <strong>exponent copy paste generator</strong> for these needs.</li>
+                <li><strong>Subscript (x₂):</strong> These characters sit <em>below</em> the normal text line. They are essential for writing chemical compounds (like H₂O or CO₂), mathematical indices, and certain scientific notations.</li>
             </ul>
+            <p>With our dual-mode selector at the top, you can instantly switch between generating <strong>online superscript and subscript</strong> text depending on your needs.</p>
+
+            <h2>Practical Use Cases for Tiny Text</h2>
+            <p>Beyond math and science, a <strong>superscript copy paste</strong> tool has many creative applications across the digital world:</p>
+            <ul>
+                <li><strong>Social Media Bios:</strong> Stand out on platforms like X (Twitter), Instagram, and TikTok by adding unique, small text flair to your profile name or bio (e.g., ᴹʸ ᴬᵉˢᵗʰᵉᵗᶦᶜ ᴮᶦᵒ).</li>
+                <li><strong>Gaming Usernames:</strong> Create distinctive usernames for Discord, Steam, or other gaming platforms that support Unicode characters.</li>
+                <li><strong>Professional Communication:</strong> Use it to add professional-looking citations¹, trademarks™, or registered symbols® in plain text emails or messaging apps like Slack and WhatsApp.</li>
+                <li><strong>Developers & Designers:</strong> Quickly generate placeholder text or test how different platforms handle unusual Unicode characters.</li>
+            </ul>
+
+            <h2>Frequently Asked Questions (FAQ)</h2>
+            
+            <div class="faq-box">
+                <h3>❓ How does this superscript text generator work?</h3>
+                <p>It's not magic, it's Unicode! When you type "a" and select superscript, we don't just make the letter "a" smaller. We replace it with the Unicode character "ᵃ" (U+1D43). Since this is a standard character defined by international computing standards, it displays correctly on most modern devices, browsers, and applications that support Unicode text.</p>
+            </div>
+
+            <div class="faq-box">
+                <h3>❓ Why are some letters missing or look different?</h3>
+                <p>This is a common question for any <strong>unicode superscript generator</strong>. The truth is, the Unicode standard does not include a complete, perfect "tiny alphabet" for superscript or subscript. It was built from various mathematical and phonetic symbols over many years.</p>
+                <p>We have meticulously mapped the best available characters to provide the most complete set possible. However, some letters (like a true superscript 'q' or capital 'I') don't have perfect counterparts, so we use the closest available phonetic modifiers. This is a limitation of Unicode itself, not our tool.</p>
+            </div>
+
+            <div class="faq-box">
+                <h3>❓ Can I use this as an exponent copy paste generator for Word or Google Docs?</h3>
+                <p>Yes, you can! While Microsoft Word and Google Docs have their own built-in formatting for superscript (usually Ctrl+Shift++), you can still use our tool to generate and <strong>copy paste superscript</strong> text into them. This is particularly useful if you are drafting text in a plain notepad to paste elsewhere later.</p>
+            </div>
+            
+             <div class="faq-box">
+                <h3>❓ Is this tool free to use?</h3>
+                <p>Absolutely. SuperscriptGenerator.co is a completely free online utility. There are no limits on how many times you can convert text, and no account registration is required.</p>
+            </div>
         </div>
 
         <div class="feedback-section">
@@ -382,7 +423,7 @@
 
     <footer class="footer">
         © 2025 SuperscriptGenerator.co. All rights reserved. <br>
-        A free tool for generating tiny text, exponents, and footnotes.
+        The fast, free, and reliable online superscript and subscript generator.
     </footer>
 
     <script>
