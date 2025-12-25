@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* CSS Variables for Light/Dark Themes */
         :root {
             --primary: #2563eb;
             --primary-dark: #1e40af;
@@ -32,11 +33,29 @@
             --text-main: #0f172a;
             --text-muted: #64748b;
             --border: #e2e8f0;
+            --input-bg: #f8fafc;
             --success: #10b981;
+            --example-btn-bg: #e2e8f0;
+            --example-btn-text: #475569;
+        }
+
+        /* Dark Mode Overrides */
+        [data-theme="dark"] {
+            --primary: #3b82f6; /* Slightly lighter blue for dark mode */
+            --primary-dark: #60a5fa;
+            --secondary: #94a3b8;
+            --bg: #0f172a; /* Deep dark blue bg */
+            --card-bg: #1e293b; /* Dark card bg */
+            --text-main: #f1f5f9; /* Light text */
+            --text-muted: #cbd5e1;
+            --border: #334155;
+            --input-bg: #334155; /* Dark input bg */
+            --example-btn-bg: #334155;
+            --example-btn-text: #e2e8f0;
         }
 
         body {
-            font-family: 'Inter', 'Noto Sans', sans-serif; /* Noto helps with special chars */
+            font-family: 'Inter', 'Noto Sans', sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -45,23 +64,52 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
         }
 
         .navbar {
             width: 100%;
             background: var(--card-bg);
             border-bottom: 1px solid var(--border);
-            padding: 15px 0;
-            text-align: center;
+            padding: 15px 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between; /* Separate title and toggle */
+            align-items: center;
+            box-sizing: border-box;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .navbar h1 {
             margin: 0;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: var(--text-main);
         }
+
+        /* Dark Mode Toggle Button */
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .theme-toggle-btn:hover {
+            background-color: var(--border);
+        }
+        /* Hide moon in light mode, show sun */
+        [data-theme="light"] .icon-moon { display: none; }
+        [data-theme="light"] .icon-sun { display: block; }
+        /* Hide sun in dark mode, show moon */
+        [data-theme="dark"] .icon-sun { display: none; }
+        [data-theme="dark"] .icon-moon { display: block; }
+
 
         .main-container {
             width: 100%;
@@ -70,13 +118,13 @@
             box-sizing: border-box;
         }
 
-        /* Toggle Tabs for Super/Sub Script */
         .mode-switch {
             display: flex;
-            background: #e2e8f0;
+            background: var(--border);
             padding: 5px;
             border-radius: 12px;
             margin-bottom: 25px;
+            transition: background 0.3s;
         }
 
         .mode-btn {
@@ -103,7 +151,8 @@
             border-radius: 16px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            border: 1px solid white;
+            border: 1px solid var(--border); /* Changed to variable border */
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .label-group {
@@ -130,6 +179,38 @@
             text-decoration: underline;
         }
 
+        /* New: Quick Examples Area */
+        .examples-container {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+        .example-label {
+            font-size: 13px;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            margin-right: 5px;
+            font-weight: 600;
+        }
+        .example-btn {
+            background: var(--example-btn-bg);
+            color: var(--example-btn-text);
+            border: 1px solid var(--border);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        .example-btn:hover {
+            background: var(--border);
+            transform: translateY(-1px);
+        }
+
+
         textarea {
             width: 100%;
             padding: 16px;
@@ -140,21 +221,20 @@
             box-sizing: border-box;
             resize: vertical;
             min-height: 120px;
-            transition: border-color 0.2s;
+            transition: all 0.2s;
             margin-bottom: 20px;
-            background-color: #f8fafc;
+            background-color: var(--input-bg); /* Use variable bg */
+            color: var(--text-main); /* Ensure text color is correct */
         }
 
         textarea:focus {
             outline: none;
             border-color: var(--primary);
-            background-color: #fff;
         }
 
         #output {
-            background-color: #fff; /* White bg for clarity */
+            /* Removed hardcoded white bg for better dark mode support */
             font-weight: 500;
-            color: #000;
         }
 
         .btn-copy {
@@ -182,7 +262,6 @@
             transform: scale(0.98);
         }
 
-        /* Success Animation */
         @keyframes pop {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
@@ -194,7 +273,6 @@
             animation: pop 0.3s ease;
         }
 
-        /* Content Section for SEO */
         .content-section {
             margin-top: 50px;
             color: var(--text-main);
@@ -219,11 +297,12 @@
         }
 
         .faq-box {
-            background: #fff;
+            background: var(--card-bg); /* Variable bg */
             border-radius: 8px;
             padding: 20px;
             border: 1px solid var(--border);
             margin-bottom: 15px;
+            transition: background 0.3s, border-color 0.3s;
         }
 
         .footer {
@@ -234,12 +313,14 @@
             color: var(--secondary);
             border-top: 1px solid var(--border);
             width: 100%;
+            transition: border-color 0.3s;
         }
 
         @media (max-width: 600px) {
             .main-container { padding: 20px 15px; }
             .card { padding: 20px; }
-            h1 { font-size: 18px; }
+            .navbar h1 { font-size: 18px; }
+            .examples-container { overflow-x: auto; padding-bottom: 5px; } /* Scroll on very small screens */
         }
     </style>
 </head>
@@ -247,6 +328,10 @@
 
     <nav class="navbar">
         <h1>Superscript & Subscript Generator</h1>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle Dark Mode" onclick="toggleTheme()">
+            <svg class="icon-sun" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+            <svg class="icon-moon" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+        </button>
     </nav>
 
     <div class="main-container">
@@ -261,7 +346,16 @@
                 <label for="input">Normal Text</label>
                 <button class="clear-btn" onclick="clearText()">Clear</button>
             </div>
-            <textarea id="input" placeholder="Type letters, numbers or symbols (e.g. MC2)..." oninput="convertText()"></textarea>
+
+            <div class="examples-container">
+                <span class="example-label">Try:</span>
+                <button class="example-btn" onclick="setExample('E=mc2')">E=mc² (Math)</button>
+                <button class="example-btn" onclick="setExample('H2O')">H₂O (Chem)</button>
+                <button class="example-btn" onclick="setExample('Name')">ᴺᵃᵐᵉ (Twitter)</button>
+                <button class="example-btn" onclick="setExample('tiny text')">ᵗⁱⁿʸ (Aesthetic)</button>
+            </div>
+
+            <textarea id="input" placeholder="Type letters, numbers or symbols..." oninput="convertText()"></textarea>
 
             <div class="label-group">
                 <label id="outputLabel">Superscript Result</label>
@@ -276,23 +370,23 @@
 
         <div class="content-section">
             <h2>About this Superscript Generator</h2>
-            <p>Welcome to the most complete Superscript and Subscript generator on the web. While most tools struggle with missing letters like "q" or "i", we have optimized our Unicode map to provide the best possible coverage for your tiny text needs.</p>
+            <p>Welcome to the most complete Superscript and Subscript generator on the web. We have optimized our Unicode map to provide the best possible coverage for your tiny text needs, including support for math symbols and chemical formulas.</p>
 
             <div class="faq-box">
-                <h3>❓ Why are some letters weird? (The "Missing Characters" Issue)</h3>
-                <p>You might notice that superscript "q" or capital "Q" looks slightly different. This isn't a bug in our tool; it's a limitation of Unicode. The Unicode standard was not designed to include a full "tiny alphabet". We use the closest looking phonetic symbols (like modifiers) to mimic the effect.</p>
+                <h3>❓ Why are some letters weird?</h3>
+                <p>You might notice some characters look slightly different. This is because "tiny text" isn't a font, but a collection of special Unicode symbols taken from different language sets to mimic the effect.</p>
             </div>
 
             <div class="faq-box">
-                <h3>🔢 Can I generate Subscript text?</h3>
-                <p>Yes! We listened to user feedback. Simply click the <strong>"Subscript (x₂)"</strong> tab at the top to switch modes. This is perfect for chemical formulas (like H₂O) or mathematical notations.</p>
+                <h3>🔢 How do I use Subscript?</h3>
+                <p>Simply click the <strong>"Subscript (x₂)"</strong> tab at the top or use the quick examples above. This is perfect for chemical formulas (like H₂O) or mathematical notations.</p>
             </div>
 
-            <h2>How to use Superscript on Social Media</h2>
+            <h2>Common Uses on Social Media</h2>
             <ul>
-                <li><strong>X (Twitter) Names:</strong> Make your profile stand out by adding small text (e.g., ᴺᵃᵐᵉ).</li>
-                <li><strong>Discord & Reddit:</strong> Use it for small footnotes or aesthetic formatting.</li>
-                <li><strong>Math & Science:</strong> Easily type exponents (x² + y²) without using equation editors.</li>
+                <li><strong>X (Twitter) Bio:</strong> Make your profile unique (e.g., ᴾʳᵒᶠᵉˢˢᶦᵒⁿᵃˡ).</li>
+                <li><strong>Discord & Reddit:</strong> Use it for aesthetic formatting or footnotes.</li>
+                <li><strong>Academic:</strong> Easily type exponents (x² + y²) or chemical compounds.</li>
             </ul>
         </div>
     </div>
@@ -303,9 +397,23 @@
     </footer>
 
     <script>
+        // --- Dark Mode Logic ---
+        // Check for saved user preference, if any, on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme); // Save preference
+        }
+
+
+        // --- Generator Logic ---
         let currentMode = 'super'; // Default mode
 
-        // Enhanced Map based on user feedback (added q, i, punctuation, etc.)
         const charMap = {
             super: {
                 '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
@@ -328,8 +436,6 @@
 
         function setMode(mode) {
             currentMode = mode;
-            
-            // UI Updates
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             if(mode === 'super') {
                 document.getElementById('btnSuper').classList.add('active');
@@ -338,23 +444,24 @@
                 document.getElementById('btnSub').classList.add('active');
                 document.getElementById('outputLabel').innerText = "Subscript Result";
             }
-            
-            // Re-convert text immediately
             convertText();
+        }
+
+        // New function for example buttons
+        function setExample(text) {
+            document.getElementById('input').value = text;
+            convertText();
+            // Optional: auto-switch mode based on example if needed, but current examples work well in default super mode
         }
 
         function convertText() {
             const input = document.getElementById('input').value;
             let output = '';
             const map = charMap[currentMode];
-            
             for (let char of input) {
-                // Try literal match first, then lowercase match (if key missing), otherwise keep original
-                // We check literal match first to handle Case Sensitivity if map has it
                 if (map[char]) {
                     output += map[char];
                 } else if (map[char.toLowerCase()]) {
-                     // Some maps might only have lowercase, so fallback (optional logic)
                     output += map[char.toLowerCase()];
                 } else {
                     output += char;
@@ -371,17 +478,13 @@
         function copyText() {
             const output = document.getElementById('output');
             const btn = document.getElementById('copyBtn');
-            const originalText = btn.innerHTML; // Save icon + text
-
+            const originalText = btn.innerHTML;
             if (!output.value) return;
-
             output.select();
             output.setSelectionRange(0, 99999);
-            
             navigator.clipboard.writeText(output.value).then(() => {
                 btn.classList.add('copied');
                 btn.innerHTML = `✅ Copied!`;
-                
                 setTimeout(() => {
                     btn.classList.remove('copied');
                     btn.innerHTML = originalText;
@@ -392,6 +495,3 @@
 
 </body>
 </html>
-
-
-
