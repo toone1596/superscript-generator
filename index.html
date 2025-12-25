@@ -31,7 +31,7 @@
             --bg: #f1f5f9;
             --card-bg: #ffffff;
             --text-main: #0f172a;
-            --text-muted: #475569; /* Slightly darker for better readability */
+            --text-muted: #475569;
             --border: #e2e8f0;
             --input-bg: #f8fafc;
             --success: #10b981;
@@ -113,7 +113,7 @@
 
         .main-container {
             width: 100%;
-            max-width: 800px; /* Increased width slightly for better reading */
+            max-width: 800px;
             padding: 40px 20px;
             box-sizing: border-box;
             flex: 1;
@@ -241,7 +241,6 @@
             animation: pop 0.3s ease;
         }
 
-        /* Enhanced Content Section Styles */
         .content-section {
             margin-top: 60px;
             color: var(--text-main);
@@ -442,6 +441,7 @@
         // --- Generator Logic ---
         let currentMode = 'super'; // Default mode
 
+        // Corrected Map: Removed fake subscript mappings for b, f, g, q, w, z
         const charMap = {
             super: {
                 '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
@@ -455,7 +455,7 @@
             },
             sub: {
                 '0': '₀', '1': '₁', '2': '₂', '3': '₃', '4': '₄', '5': '₅', '6': '₆', '7': '₇', '8': '₈', '9': '₉',
-                'a': 'ₐ', 'b': '₆', 'c': '꜀', 'd': 'ₔ', 'e': 'ₑ', 'f': 'f', 'g': '₉', 'h': 'ₕ', 'i': 'ᵢ', 'j': 'ⱼ', 
+                'a': 'ₐ', 'b': 'b', 'c': '꜀', 'd': 'ₔ', 'e': 'ₑ', 'f': 'f', 'g': 'g', 'h': 'ₕ', 'i': 'ᵢ', 'j': 'ⱼ', 
                 'k': 'ₖ', 'l': 'ₗ', 'm': 'ₘ', 'n': 'ₙ', 'o': 'ₒ', 'p': 'ₚ', 'q': 'q', 'r': 'ᵣ', 's': 'ₛ', 't': 'ₜ', 
                 'u': 'ᵤ', 'v': 'ᵥ', 'w': 'w', 'x': 'ₓ', 'y': 'ᵧ', 'z': 'z',
                 '+': '₊', '-': '₋', '=': '₌', '(': '₍', ')': '₎', '.': '.', ',': ','
