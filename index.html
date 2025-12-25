@@ -13,10 +13,10 @@
     <meta property="og:description" content="Generate tiny superscript and subscript text easily. Supports letters, numbers, and symbols.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://superscriptgenerator.co/">
-    <meta property="og:image" content="https://superscriptgenerator.co/og-image.png">
+    <meta property="og:image" content="/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <link rel="icon" type="image/png" href="https://superscriptgenerator.co/favicon.png">
+    <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,6 +35,9 @@
             --border: #e2e8f0;
             --input-bg: #f8fafc;
             --success: #10b981;
+            --feedback-bg: #1e293b;
+            --feedback-text: #f8fafc;
+            --feedback-link: #60a5fa;
         }
 
         /* Dark Mode Overrides */
@@ -48,6 +51,9 @@
             --text-muted: #cbd5e1;
             --border: #334155;
             --input-bg: #334155;
+            --feedback-bg: #334155;
+            --feedback-text: #f1f5f9;
+            --feedback-link: #93c5fd;
         }
 
         body {
@@ -110,6 +116,7 @@
             max-width: 700px;
             padding: 40px 20px;
             box-sizing: border-box;
+            flex: 1; /* Makes main container take available space */
         }
 
         .mode-switch {
@@ -266,8 +273,32 @@
             transition: background 0.3s, border-color 0.3s;
         }
 
+        /* New Feedback Section Style */
+        .feedback-section {
+            margin-top: 40px;
+            background: var(--feedback-bg);
+            color: var(--feedback-text);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .feedback-section a {
+            color: var(--feedback-link);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .feedback-section a:hover {
+            text-decoration: underline;
+        }
+
         .footer {
-            margin-top: 60px;
+            margin-top: 40px;
             padding: 20px;
             text-align: center;
             font-size: 13px;
@@ -341,6 +372,12 @@
                 <li><strong>Academic:</strong> Easily type exponents (x² + y²) or chemical compounds.</li>
             </ul>
         </div>
+
+        <div class="feedback-section">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <span>Feedback & Suggestions: <a href="mailto:jamfairy25@gmail.com">jamfairy25@gmail.com</a></span>
+        </div>
+
     </div>
 
     <footer class="footer">
