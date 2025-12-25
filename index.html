@@ -35,23 +35,19 @@
             --border: #e2e8f0;
             --input-bg: #f8fafc;
             --success: #10b981;
-            --example-btn-bg: #e2e8f0;
-            --example-btn-text: #475569;
         }
 
         /* Dark Mode Overrides */
         [data-theme="dark"] {
-            --primary: #3b82f6; /* Slightly lighter blue for dark mode */
+            --primary: #3b82f6;
             --primary-dark: #60a5fa;
             --secondary: #94a3b8;
-            --bg: #0f172a; /* Deep dark blue bg */
-            --card-bg: #1e293b; /* Dark card bg */
-            --text-main: #f1f5f9; /* Light text */
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f1f5f9;
             --text-muted: #cbd5e1;
             --border: #334155;
-            --input-bg: #334155; /* Dark input bg */
-            --example-btn-bg: #334155;
-            --example-btn-text: #e2e8f0;
+            --input-bg: #334155;
         }
 
         body {
@@ -74,7 +70,7 @@
             padding: 15px 20px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: space-between; /* Separate title and toggle */
+            justify-content: space-between;
             align-items: center;
             box-sizing: border-box;
             transition: background 0.3s, border-color 0.3s;
@@ -103,10 +99,8 @@
         .theme-toggle-btn:hover {
             background-color: var(--border);
         }
-        /* Hide moon in light mode, show sun */
         [data-theme="light"] .icon-moon { display: none; }
         [data-theme="light"] .icon-sun { display: block; }
-        /* Hide sun in dark mode, show moon */
         [data-theme="dark"] .icon-sun { display: none; }
         [data-theme="dark"] .icon-moon { display: block; }
 
@@ -151,7 +145,7 @@
             border-radius: 16px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             padding: 30px;
-            border: 1px solid var(--border); /* Changed to variable border */
+            border: 1px solid var(--border);
             transition: background 0.3s, border-color 0.3s;
         }
 
@@ -179,38 +173,6 @@
             text-decoration: underline;
         }
 
-        /* New: Quick Examples Area */
-        .examples-container {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-        .example-label {
-            font-size: 13px;
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            margin-right: 5px;
-            font-weight: 600;
-        }
-        .example-btn {
-            background: var(--example-btn-bg);
-            color: var(--example-btn-text);
-            border: 1px solid var(--border);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: 500;
-        }
-        .example-btn:hover {
-            background: var(--border);
-            transform: translateY(-1px);
-        }
-
-
         textarea {
             width: 100%;
             padding: 16px;
@@ -223,8 +185,8 @@
             min-height: 120px;
             transition: all 0.2s;
             margin-bottom: 20px;
-            background-color: var(--input-bg); /* Use variable bg */
-            color: var(--text-main); /* Ensure text color is correct */
+            background-color: var(--input-bg);
+            color: var(--text-main);
         }
 
         textarea:focus {
@@ -233,7 +195,6 @@
         }
 
         #output {
-            /* Removed hardcoded white bg for better dark mode support */
             font-weight: 500;
         }
 
@@ -297,7 +258,7 @@
         }
 
         .faq-box {
-            background: var(--card-bg); /* Variable bg */
+            background: var(--card-bg);
             border-radius: 8px;
             padding: 20px;
             border: 1px solid var(--border);
@@ -320,7 +281,6 @@
             .main-container { padding: 20px 15px; }
             .card { padding: 20px; }
             .navbar h1 { font-size: 18px; }
-            .examples-container { overflow-x: auto; padding-bottom: 5px; } /* Scroll on very small screens */
         }
     </style>
 </head>
@@ -347,14 +307,6 @@
                 <button class="clear-btn" onclick="clearText()">Clear</button>
             </div>
 
-            <div class="examples-container">
-                <span class="example-label">Try:</span>
-                <button class="example-btn" onclick="setExample('E=mc2', 'E=mc²', 'super')">E=mc² (Math)</button>
-                <button class="example-btn" onclick="setExample('H2O', 'H₂O', 'sub')">H₂O (Chem)</button>
-                <button class="example-btn" onclick="setExample('Name', 'ᴺᵃᵐᵉ', 'super')">ᴺᵃᵐᵉ (Twitter)</button>
-                <button class="example-btn" onclick="setExample('tiny text', 'ᵗⁱⁿʸ ᵗᵉˣᵗ', 'super')">ᵗⁱⁿʸ (Aesthetic)</button>
-            </div>
-
             <textarea id="input" placeholder="Type letters, numbers or symbols..." oninput="convertText()"></textarea>
 
             <div class="label-group">
@@ -379,7 +331,7 @@
 
             <div class="faq-box">
                 <h3>🔢 How do I use Subscript?</h3>
-                <p>Simply click the <strong>"Subscript (x₂)"</strong> tab at the top or use the quick examples above. This is perfect for chemical formulas (like H₂O) or mathematical notations.</p>
+                <p>Simply click the <strong>"Subscript (x₂)"</strong> tab at the top. This is perfect for chemical formulas (like H₂O) or mathematical notations.</p>
             </div>
 
             <h2>Common Uses on Social Media</h2>
@@ -442,27 +394,8 @@
                 document.getElementById('btnSub').classList.add('active');
                 document.getElementById('outputLabel').innerText = "Subscript Result";
             }
+            // Mode switched, re-convert immediately
             convertText();
-        }
-
-        // New function for example buttons
-        function setExample(inputText, outputText, mode) {
-            // 1. Set input text
-            document.getElementById('input').value = inputText;
-            
-            // 2. Set output text directly with the correct, pre-formatted string
-            document.getElementById('output').value = outputText;
-
-            // 3. Update UI for mode, but DO NOT call convertText()
-            currentMode = mode;
-            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
-            if(mode === 'super') {
-                document.getElementById('btnSuper').classList.add('active');
-                document.getElementById('outputLabel').innerText = "Superscript Result";
-            } else {
-                document.getElementById('btnSub').classList.add('active');
-                document.getElementById('outputLabel').innerText = "Subscript Result";
-            }
         }
 
         function convertText() {
