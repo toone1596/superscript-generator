@@ -432,8 +432,7 @@
             }
         };
 
-        // Updated setMode to accept a flag to suppress automatic conversion
-        function setMode(mode, suppressConversion = false) {
+        function setMode(mode) {
             currentMode = mode;
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             if(mode === 'super') {
@@ -443,14 +442,10 @@
                 document.getElementById('btnSub').classList.add('active');
                 document.getElementById('outputLabel').innerText = "Subscript Result";
             }
-            
-            // Only convert if not suppressed (examples suppress this)
-            if (!suppressConversion) {
-                convertText();
-            }
+            convertText();
         }
 
-        // Updated setExample to handle mixed outputs and auto-mode switching
+        // New function for example buttons
         function setExample(inputText, outputText, mode) {
             // 1. Set input text
             document.getElementById('input').value = inputText;
@@ -458,9 +453,15 @@
             // 2. Set output text directly with the correct, pre-formatted string
             document.getElementById('output').value = outputText;
 
-            // 3. Switch mode visually, but SUPPRESS re-conversion so we don't overwrite the correct output
-            if (mode && mode !== currentMode) {
-                setMode(mode, true);
+            // 3. Update UI for mode, but DO NOT call convertText()
+            currentMode = mode;
+            document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
+            if(mode === 'super') {
+                document.getElementById('btnSuper').classList.add('active');
+                document.getElementById('outputLabel').innerText = "Superscript Result";
+            } else {
+                document.getElementById('btnSub').classList.add('active');
+                document.getElementById('outputLabel').innerText = "Subscript Result";
             }
         }
 
