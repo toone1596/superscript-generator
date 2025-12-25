@@ -5,67 +5,236 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Superscript Generator - Free Online Tiny Text Maker (²⁰²⁴)</title>
     <meta name="description" content="Free online Superscript Generator. Convert normal text into ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ instantly. Perfect for social media bios, footnotes, and math formulas. Copy & Paste!">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f5f5f7; color: #1d1d1f; }
-        h1 { text-align: center; color: #333; }
-        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        textarea { width: 100%; height: 150px; padding: 15px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 18px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; }
-        label { font-weight: bold; display: block; margin-bottom: 10px; }
-        button { background-color: #0071e3; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; cursor: pointer; transition: background 0.3s; width: 100%; }
-        button:hover { background-color: #0077ed; }
-        button:active { transform: scale(0.98); }
-        .footer-text { margin-top: 40px; font-size: 14px; line-height: 1.6; color: #666; }
-        h2 { font-size: 1.2em; margin-top: 20px; }
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-sub: #64748b;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* 主卡片样式 */
+        .main-card {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            padding: 40px;
+            box-sizing: border-box;
+            border: 1px solid white;
+        }
+
+        h1 {
+            font-weight: 800;
+            font-size: 28px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 30px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-sub);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            font-size: 18px;
+            font-family: inherit;
+            color: var(--text-main);
+            box-sizing: border-box;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.2s ease;
+            background: #fff;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
+
+        /* 输出框稍微不同，显示只读感 */
+        #output {
+            background-color: #f1f5f9;
+            color: #334155;
+            cursor: copy;
+        }
+
+        /* 按钮样式 */
+        .btn-copy {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+        }
+
+        .btn-copy:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-copy:active {
+            transform: translateY(1px);
+        }
+
+        /* 复制成功的动画状态 */
+        .btn-copy.copied {
+            background-color: #059669; /* 绿色 */
+        }
+
+        /* SEO 内容区域 */
+        .seo-section {
+            max-width: 600px;
+            margin-top: 50px;
+            color: var(--text-sub);
+            line-height: 1.7;
+        }
+
+        .seo-section h2 {
+            color: var(--text-main);
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 600px) {
+            body { padding: 20px 15px; }
+            .main-card { padding: 25px; }
+            h1 { font-size: 24px; }
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Superscript Generator</h1>
-    
-    <label for="input">Input Normal Text:</label>
-    <textarea id="input" placeholder="Type your text here (e.g. mc2)..." oninput="convertText()"></textarea>
+    <div class="main-card">
+        <h1>Superscript Generator</h1>
+        
+        <div class="input-group">
+            <label for="input">Your Text</label>
+            <textarea id="input" placeholder="Type something here (e.g. 2nd place)..." oninput="convertText()"></textarea>
+        </div>
 
-    <label for="output">Superscript Result:</label>
-    <textarea id="output" readonly placeholder="Result will appear here..."></textarea>
+        <div class="input-group">
+            <label for="output">Superscript Result</label>
+            <textarea id="output" readonly placeholder="Result appears here..." onclick="copyText()"></textarea>
+        </div>
 
-    <button onclick="copyText()">Copy to Clipboard</button>
-</div>
+        <button class="btn-copy" id="copyBtn" onclick="copyText()">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+            Copy to Clipboard
+        </button>
+    </div>
 
-<div class="footer-text">
-    <h2>What is a Superscript Generator?</h2>
-    <p>This tool converts your normal text into superscript characters (like ᵗʰᶦˢ). It uses specific Unicode characters to mimic the effect of raised text. </p>
-    <h2>Where can I use this?</h2>
-    <p>You can use these tiny letters on Facebook, Twitter (X), Instagram bios, and even in text messages where formatting isn't usually allowed.</p>
-</div>
+    <div class="seo-section">
+        <h2>What is a Superscript Generator?</h2>
+        <p>This simple tool transforms standard text into ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ characters. Unlike standard font styling, these are special Unicode characters that work anywhere—including Twitter, Facebook, Instagram bios, and text messages.</p>
+        
+        <h2>How to use?</h2>
+        <p>Just type your text in the top box. The tool instantly converts numbers (1 → ¹) and letters (a → ᵃ). Click the "Copy" button and paste it wherever you want.</p>
+    </div>
 
-<script>
-    const map = {
-        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
-        'a': 'ᵃ', 'b': 'ᵇ', 'c': 'ᶜ', 'd': 'ᵈ', 'e': 'ᵉ', 'f': 'ᶠ', 'g': 'ᵍ', 'h': 'ʰ', 'i': 'ⁱ', 'j': 'ʲ', 
-        'k': 'ᵏ', 'l': 'ˡ', 'm': 'ᵐ', 'n': 'ⁿ', 'o': 'ᵒ', 'p': 'ᵖ', 'q': 'q', 'r': 'ʳ', 's': 'ˢ', 't': 'ᵗ', 
-        'u': 'ᵘ', 'v': 'ᵛ', 'w': 'ʷ', 'x': 'ˣ', 'y': 'ʸ', 'z': 'ᶻ',
-        '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾'
-    };
+    <div class="footer">
+        © 2024 SuperscriptGenerator.co - Free Online Tool
+    </div>
 
-    function convertText() {
-        const input = document.getElementById('input').value;
-        let output = '';
-        for (let char of input) {
-            output += map[char.toLowerCase()] || char;
+    <script>
+        const map = {
+            '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+            'a': 'ᵃ', 'b': 'ᵇ', 'c': 'ᶜ', 'd': 'ᵈ', 'e': 'ᵉ', 'f': 'ᶠ', 'g': 'ᵍ', 'h': 'ʰ', 'i': 'ⁱ', 'j': 'ʲ', 
+            'k': 'ᵏ', 'l': 'ˡ', 'm': 'ᵐ', 'n': 'ⁿ', 'o': 'ᵒ', 'p': 'ᵖ', 'q': 'q', 'r': 'ʳ', 's': 'ˢ', 't': 'ᵗ', 
+            'u': 'ᵘ', 'v': 'ᵛ', 'w': 'ʷ', 'x': 'ˣ', 'y': 'ʸ', 'z': 'ᶻ',
+            '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾'
+        };
+
+        function convertText() {
+            const input = document.getElementById('input').value;
+            let output = '';
+            for (let char of input) {
+                output += map[char.toLowerCase()] || char;
+            }
+            document.getElementById('output').value = output;
         }
-        document.getElementById('output').value = output;
-    }
 
-    function copyText() {
-        const output = document.getElementById('output');
-        output.select();
-        output.setSelectionRange(0, 99999);
-        navigator.clipboard.writeText(output.value).then(() => {
-            alert("Copied to clipboard!");
-        });
-    }
-</script>
+        function copyText() {
+            const output = document.getElementById('output');
+            const btn = document.getElementById('copyBtn');
+            const originalText = btn.innerHTML;
+
+            if (!output.value) return; // 如果是空的就不复制
+
+            output.select();
+            output.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(output.value).then(() => {
+                // 视觉反馈：变绿，文字变成 Copied!
+                btn.classList.add('copied');
+                btn.innerHTML = `<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Copied!`;
+                
+                // 2秒后恢复原状
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = originalText;
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
