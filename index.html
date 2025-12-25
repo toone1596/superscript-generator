@@ -349,10 +349,10 @@
 
             <div class="examples-container">
                 <span class="example-label">Try:</span>
-                <button class="example-btn" onclick="setExample('E=mc2')">E=mc² (Math)</button>
-                <button class="example-btn" onclick="setExample('H2O')">H₂O (Chem)</button>
-                <button class="example-btn" onclick="setExample('Name')">ᴺᵃᵐᵉ (Twitter)</button>
-                <button class="example-btn" onclick="setExample('tiny text')">ᵗⁱⁿʸ (Aesthetic)</button>
+                <button class="example-btn" onclick="setExample('E=mc2', 'E=mc²', 'super')">E=mc² (Math)</button>
+                <button class="example-btn" onclick="setExample('H2O', 'H₂O', 'sub')">H₂O (Chem)</button>
+                <button class="example-btn" onclick="setExample('Name', 'ᴺᵃᵐᵉ', 'super')">ᴺᵃᵐᵉ (Twitter)</button>
+                <button class="example-btn" onclick="setExample('tiny text', 'ᵗⁱⁿʸ ᵗᵉˣᵗ', 'super')">ᵗⁱⁿʸ (Aesthetic)</button>
             </div>
 
             <textarea id="input" placeholder="Type letters, numbers or symbols..." oninput="convertText()"></textarea>
@@ -398,16 +398,14 @@
 
     <script>
         // --- Dark Mode Logic ---
-        // Check for saved user preference, if any, on load
         const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         function toggleTheme() {
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
             document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme); // Save preference
+            localStorage.setItem('theme', newTheme);
         }
 
 
@@ -434,7 +432,8 @@
             }
         };
 
-        function setMode(mode) {
+        // Updated setMode to accept a flag to suppress automatic conversion
+        function setMode(mode, suppressConversion = false) {
             currentMode = mode;
             document.querySelectorAll('.mode-btn').forEach(btn => btn.classList.remove('active'));
             if(mode === 'super') {
@@ -444,14 +443,25 @@
                 document.getElementById('btnSub').classList.add('active');
                 document.getElementById('outputLabel').innerText = "Subscript Result";
             }
-            convertText();
+            
+            // Only convert if not suppressed (examples suppress this)
+            if (!suppressConversion) {
+                convertText();
+            }
         }
 
-        // New function for example buttons
-        function setExample(text) {
-            document.getElementById('input').value = text;
-            convertText();
-            // Optional: auto-switch mode based on example if needed, but current examples work well in default super mode
+        // Updated setExample to handle mixed outputs and auto-mode switching
+        function setExample(inputText, outputText, mode) {
+            // 1. Set input text
+            document.getElementById('input').value = inputText;
+            
+            // 2. Set output text directly with the correct, pre-formatted string
+            document.getElementById('output').value = outputText;
+
+            // 3. Switch mode visually, but SUPPRESS re-conversion so we don't overwrite the correct output
+            if (mode && mode !== currentMode) {
+                setMode(mode, true);
+            }
         }
 
         function convertText() {
