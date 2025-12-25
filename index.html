@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Superscript Generator - Free Online Tiny Text Maker (²⁰²⁴)</title>
+    <meta name="description" content="Free online Superscript Generator. Convert normal text into ˢᵘᵖᵉʳˢᶜʳᶦᵖᵗ instantly. Perfect for social media bios, footnotes, and math formulas. Copy & Paste!">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f5f5f7; color: #1d1d1f; }
+        h1 { text-align: center; color: #333; }
+        .container { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        textarea { width: 100%; height: 150px; padding: 15px; border: 1px solid #d2d2d7; border-radius: 8px; font-size: 18px; box-sizing: border-box; resize: vertical; margin-bottom: 20px; }
+        label { font-weight: bold; display: block; margin-bottom: 10px; }
+        button { background-color: #0071e3; color: white; border: none; padding: 12px 24px; font-size: 16px; border-radius: 8px; cursor: pointer; transition: background 0.3s; width: 100%; }
+        button:hover { background-color: #0077ed; }
+        button:active { transform: scale(0.98); }
+        .footer-text { margin-top: 40px; font-size: 14px; line-height: 1.6; color: #666; }
+        h2 { font-size: 1.2em; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Superscript Generator</h1>
+    
+    <label for="input">Input Normal Text:</label>
+    <textarea id="input" placeholder="Type your text here (e.g. mc2)..." oninput="convertText()"></textarea>
+
+    <label for="output">Superscript Result:</label>
+    <textarea id="output" readonly placeholder="Result will appear here..."></textarea>
+
+    <button onclick="copyText()">Copy to Clipboard</button>
+</div>
+
+<div class="footer-text">
+    <h2>What is a Superscript Generator?</h2>
+    <p>This tool converts your normal text into superscript characters (like ᵗʰᶦˢ). It uses specific Unicode characters to mimic the effect of raised text. </p>
+    <h2>Where can I use this?</h2>
+    <p>You can use these tiny letters on Facebook, Twitter (X), Instagram bios, and even in text messages where formatting isn't usually allowed.</p>
+</div>
+
+<script>
+    const map = {
+        '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹',
+        'a': 'ᵃ', 'b': 'ᵇ', 'c': 'ᶜ', 'd': 'ᵈ', 'e': 'ᵉ', 'f': 'ᶠ', 'g': 'ᵍ', 'h': 'ʰ', 'i': 'ⁱ', 'j': 'ʲ', 
+        'k': 'ᵏ', 'l': 'ˡ', 'm': 'ᵐ', 'n': 'ⁿ', 'o': 'ᵒ', 'p': 'ᵖ', 'q': 'q', 'r': 'ʳ', 's': 'ˢ', 't': 'ᵗ', 
+        'u': 'ᵘ', 'v': 'ᵛ', 'w': 'ʷ', 'x': 'ˣ', 'y': 'ʸ', 'z': 'ᶻ',
+        '+': '⁺', '-': '⁻', '=': '⁼', '(': '⁽', ')': '⁾'
+    };
+
+    function convertText() {
+        const input = document.getElementById('input').value;
+        let output = '';
+        for (let char of input) {
+            output += map[char.toLowerCase()] || char;
+        }
+        document.getElementById('output').value = output;
+    }
+
+    function copyText() {
+        const output = document.getElementById('output');
+        output.select();
+        output.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(output.value).then(() => {
+            alert("Copied to clipboard!");
+        });
+    }
+</script>
+
+</body>
+</html>
